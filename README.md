@@ -54,7 +54,7 @@ Panel superior con estadisticas globales: inscripciones confirmadas, estudiantes
 **Ocupacion y asistencia por actividad**
 ![Reportes 2](docs/reportes_2.png)
 
-Reporte de ocupacion de cada actividad con barra de progreso que cambia de color segun el nivel: azul para disponible, naranja para casi lleno y rojo para completo. Reporte de asistencia por actividad con porcentaje coloreado segun el nivel de presencia.
+Reporte de ocupacion de cada actividad con barra de progreso que cambia de color segun el nivel: azul para disponible, naranja para casi lleno y rojo para completo. Reporte de asistencia por actividad con porcentaje de asistencia por actividad ordenado de mayor a menor
 
 **Estudiantes mas activos y actividades sin inscriptos**
 ![Reportes 3](docs/reportes_3.png)
