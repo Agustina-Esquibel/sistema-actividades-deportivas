@@ -1,6 +1,6 @@
 # Sistema de Gestión de Actividades Deportivas
 
-**Universidad Católica del Uruguay — Base de Datos 1 — 2026**
+**Universidad Católica del Uruguay - Base de Datos 1 - 2026**
 
 Sistema web para administrar inscripciones de estudiantes a actividades deportivas universitarias. Permite gestionar estudiantes, disciplinas, espacios, actividades, inscripciones, asistencias y consultar reportes.
 
@@ -17,7 +17,7 @@ Sistema web para administrar inscripciones de estudiantes a actividades deportiv
 
 ## Cómo correr el proyecto
 
-### Opción A — Con Docker (recomendado)
+### Opción A - Con Docker (recomendado)
 
 **Requisitos:** tener Docker Desktop instalado.
 
@@ -33,11 +33,12 @@ La base de datos se crea automáticamente con datos de prueba.
 
 ---
 
-### Opción B — Sin Docker (desarrollo local)
+### Opción B - Sin Docker (desarrollo local)
 
 **Requisitos:** Python 3.11+, MySQL 8.0
 
 **1. Clonar el repositorio**
+
 ```bash
 git clone https://github.com/Agustina-Esquibel/sistema-actividades-deportivas.git
 cd sistema-actividades-deportivas
@@ -45,18 +46,19 @@ cd sistema-actividades-deportivas
 
 **2. Crear la base de datos**
 
-Abrir MySQL o DataGrip y ejecutar el script: 
-init/bd_activididades_deportivas.sql
+Abrir MySQL o DataGrip y ejecutar el script `init/bd_activididades_deportivas.sql`
 
 **3. Configurar variables de entorno**
 
-Crear un archivo `.env` en la raíz con:
+Crear un archivo `.env` en la raíz del proyecto con el siguiente contenido:
+```
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=tu_password
 DB_NAME=actividades_deportivas
-
+```
 **4. Instalar dependencias e iniciar el backend**
+
 ```bash
 cd backend
 pip install -r requirements.txt
@@ -67,11 +69,12 @@ python3 app.py
 
 Abrir `frontend/index.html` con Live Server en VS Code.
 
-Asegurarse de que `const API` en `index.html` apunte a `http://127.0.0.1:5000`
+Verificar que `const API` en `index.html` apunte a `http://127.0.0.1:5000`
 
 ---
 
 ## Estructura del proyecto
+```
 sistema-actividades-deportivas/
 ├── backend/
 │   ├── app.py
@@ -100,7 +103,7 @@ sistema-actividades-deportivas/
 ├── Dockerfile
 ├── docker-compose.yml
 └── nginx.conf
-
+```
 ---
 
 ## Funcionalidades
@@ -127,11 +130,11 @@ sistema-actividades-deportivas/
 
 ## Decisiones de diseño
 
-- Se utilizó una clave subrogada (`id_estudiante`, `id_actividad`, etc.) en todas las tablas para eficiencia en los joins.
+- Se utilizó una clave subrogada en todas las tablas para eficiencia en los joins.
 - La tabla `asistencia` referencia a `inscripcion` en lugar de a `estudiante` directamente, garantizando que solo estudiantes confirmados puedan tener asistencia registrada.
 - El campo `estado` en `actividad` e `inscripcion` se implementó como `ENUM` para restringir los valores válidos a nivel de base de datos.
 - La constraint `UNIQUE(id_estudiante, id_actividad)` en `inscripcion` garantiza la regla de negocio 4 a nivel de base de datos, independientemente del backend.
-- Las reglas de negocio 1, 2, 3 y 5 se implementaron en el backend (Python) ya que requieren lógica que SQL no puede garantizar por sí solo.
+- Las reglas de negocio 1, 2, 3 y 5 se implementaron en el backend ya que requieren lógica que SQL no puede garantizar por sí solo.
 - Al cancelar una inscripción confirmada, el sistema promueve automáticamente al primer estudiante en lista de espera.
 
 ---
@@ -140,9 +143,9 @@ sistema-actividades-deportivas/
 
 Además de las 7 consultas requeridas, se implementaron 3 consultas adicionales:
 
-8. **Lista de espera por actividad** — muestra qué estudiantes están esperando un cupo y desde cuándo, útil para gestionar vacantes cuando alguien cancela.
-9. **Ranking de estudiantes más activos** — identifica los estudiantes con más actividades confirmadas.
-10. **Actividades sin inscriptos confirmados** — detecta actividades que podrían cancelarse por falta de interés.
+8. **Lista de espera por actividad:** muestra qué estudiantes están esperando un cupo y desde cuándo, útil para gestionar vacantes cuando alguien cancela.
+9. **Ranking de estudiantes más activos:** identifica los estudiantes con más actividades confirmadas.
+10. **Actividades sin inscriptos confirmados:** detecta actividades que podrían cancelarse por falta de interés.
 
 ---
 
