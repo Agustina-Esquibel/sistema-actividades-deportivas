@@ -42,17 +42,29 @@ Registro de asistencia por actividad y fecha. Solo aparecen los estudiantes con 
 
 ---
 
-### Reportes - Vista general
+### Reportes
+
+El sistema cuenta con 10 reportes que se actualizan en tiempo real con los datos del sistema.
+
+**Estadisticas generales e inscriptos**
 ![Reportes 1](docs/reportes_1.png)
 
-Panel de reportes con estadísticas globales del sistema: inscripciones confirmadas, estudiantes en lista de espera, porcentaje de asistencia promedio y cantidad de estudiantes con tres o más inasistencias. Incluye los reportes de inscriptos por actividad e inscriptos por disciplina.
+Panel superior con estadisticas globales: inscripciones confirmadas, estudiantes en lista de espera, porcentaje de asistencia promedio y cantidad de estudiantes con tres o mas inasistencias. Incluye los reportes de inscriptos por actividad con barras proporcionales e inscriptos por disciplina.
 
----
-
-### Reportes - Ocupacion y asistencia
+**Ocupacion y asistencia por actividad**
 ![Reportes 2](docs/reportes_2.png)
 
-Reportes de ocupacion por actividad con barras de progreso y porcentaje, asistencia por actividad con colores segun el nivel, lista de espera completa y estudiantes con tres o mas inasistencias registradas.
+Reporte de ocupacion de cada actividad con barra de progreso que cambia de color segun el nivel: azul para disponible, naranja para casi lleno y rojo para completo. Reporte de asistencia por actividad con porcentaje coloreado segun el nivel de presencia.
+
+**Estudiantes mas activos y actividades sin inscriptos**
+![Reportes 3](docs/reportes_3.png)
+
+Ranking de estudiantes con mas actividades confirmadas e identificacion de actividades que no tienen ningun inscripto confirmado, utiles para detectar actividades que podrian cancelarse.
+
+**Inscriptos por carrera y facultad**
+![Reportes 4](docs/reportes_4.png)
+
+Distribucion de inscriptos por carrera y facultad, permitiendo identificar que areas de la universidad tienen mayor participacion en las actividades deportivas.
 
 ---
 
