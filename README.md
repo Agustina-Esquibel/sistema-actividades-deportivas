@@ -49,29 +49,29 @@ El sistema cuenta con 10 reportes que se actualizan en tiempo real con los datos
 **Estadísticas generales e inscriptos**
 ![Reportes 1](docs/reportes_1.png)
 
-Panel superior con estadisticas globales: inscripciones confirmadas, estudiantes en lista de espera, porcentaje de asistencia promedio y cantidad de estudiantes con tres o mas inasistencias. Incluye los reportes de inscriptos por actividad con barras proporcionales e inscriptos por disciplina.
+Panel superior con estadísticas globales: inscripciones confirmadas, estudiantes en lista de espera, porcentaje de asistencia promedio y cantidad de estudiantes con tres o más inasistencias. Incluye los reportes de inscriptos por actividad con barras proporcionales e inscriptos por disciplina.
 
 **Ocupación y asistencia por actividad**
 ![Reportes 2](docs/reportes_2.png)
 
-Reporte de ocupacion de cada actividad con barra de progreso que cambia de color segun el nivel: azul para disponible, naranja para casi lleno y rojo para completo. Reporte de asistencia por actividad ordenado de mayor a menor, incluyendo actividades sin registros que aparecen con 0%.
+Reporte de ocupación de cada actividad con barra de progreso que cambia de color según el nivel: azul para disponible, naranja para casi lleno y rojo para completo. Reporte de asistencia por actividad ordenado de mayor a menor, incluyendo actividades sin registros que aparecen con 0%.
 
 **Estudiantes más activos y actividades sin inscriptos**
 ![Reportes 3](docs/reportes_3.png)
 
-Ranking de estudiantes con mas actividades confirmadas e identificacion de actividades que no tienen ningun inscripto confirmado, utiles para detectar actividades que podrian cancelarse.
+Ranking de estudiantes con más actividades confirmadas e identificación de actividades que no tienen ningún inscripto confirmado, útiles para detectar actividades que podrían cancelarse.
 
 **Inscriptos por carrera y facultad**
 ![Reportes 4](docs/reportes_4.png)
 
-Distribucion de inscriptos por carrera y facultad, permitiendo identificar que areas de la universidad tienen mayor participacion en las actividades deportivas.
+Distribución de inscriptos por carrera y facultad, permitiendo identificar qué áreas de la universidad tienen mayor participación en las actividades deportivas.
 
 ---
 
 ### Configuración
 ![Configuracion](docs/configuracion.png)
 
-Gestion de disciplinas deportivas y espacios fisicos. Permite agregar, editar y eliminar tanto disciplinas como espacios. Si se intenta eliminar una disciplina o espacio que tiene actividades asociadas, el sistema muestra un mensaje de error y no permite la operacion.
+Gestión de disciplinas deportivas y espacios físicos. Permite agregar, editar y eliminar tanto disciplinas como espacios. Si se intenta eliminar una disciplina o espacio que tiene actividades asociadas, el sistema muestra un mensaje de error y no permite la operación.
 
 ---
 
@@ -201,22 +201,29 @@ sistema-actividades-deportivas/
 
 ## Decisiones de diseño
 
-- Se utilizó una clave subrogada en todas las tablas para eficiencia en los joins.
-- La tabla `asistencia` referencia a `inscripcion` en lugar de a `estudiante` directamente, garantizando que solo estudiantes confirmados puedan tener asistencia registrada.
-- El campo `estado` en `actividad` e `inscripcion` se implementó como `ENUM` para restringir los valores válidos a nivel de base de datos.
-- La constraint `UNIQUE(id_estudiante, id_actividad)` en `inscripcion` garantiza la regla de negocio 4 a nivel de base de datos, independientemente del backend.
-- Las reglas de negocio 1, 2, 3 y 5 se implementaron en el backend ya que requieren lógica que SQL no puede garantizar por sí solo.
-- Al cancelar una inscripción confirmada, el sistema promueve automáticamente al primer estudiante en lista de espera.
+- **Claves subrogadas en todas las tablas:** se utilizó un `id` autoincremental como clave primaria en lugar de claves naturales (como el documento del estudiante), para mayor eficiencia en los joins y para evitar problemas si los datos naturales cambian.
+
+- **`asistencia` referencia a `inscripcion` y no a `estudiante`:** esta decisión garantiza a nivel de base de datos que solo estudiantes con inscripción confirmada puedan tener asistencia registrada. Si `asistencia` apuntara directamente a `estudiante`, sería posible registrar asistencia de alguien que nunca se inscribió.
+
+- **`estado` como ENUM:** los campos `estado` en `actividad` e `inscripcion` se implementaron como `ENUM` para restringir los valores válidos directamente en la base de datos, sin depender únicamente de validaciones en el backend.
+
+- **Constraint `UNIQUE(id_estudiante, id_actividad)` en `inscripcion`:** garantiza la regla de negocio 4 a nivel de base de datos. Incluso si el backend fallara o se accediera directamente a la base, no sería posible registrar dos inscripciones del mismo estudiante a la misma actividad.
+
+- **Validación en tres capas:** las reglas de negocio se validan en la base de datos (constraints), en el backend (Python) y en el frontend (JavaScript). Esto garantiza integridad independientemente del punto de acceso al sistema.
+
+- **Promoción automática de lista de espera:** al cancelar una inscripción confirmada, el sistema promueve automáticamente al primer estudiante en lista de espera ordenado por fecha de inscripción, respetando el orden de llegada.
 
 ---
 
-## Consultas adicionales propuestas por el equipo
+## Consultas adicionales propuestas
 
-Además de las 7 consultas requeridas, se implementaron 3 consultas adicionales:
+Además de las 7 consultas requeridas, se implementaron 3 consultas adicionales que aportan valor operativo al sistema:
 
-8. **Lista de espera por actividad:** muestra qué estudiantes están esperando un cupo y desde cuándo, útil para gestionar vacantes cuando alguien cancela.
-9. **Ranking de estudiantes más activos:** identifica los estudiantes con más actividades confirmadas.
-10. **Actividades sin inscriptos confirmados:** detecta actividades que podrían cancelarse por falta de interés.
+8. **Lista de espera por actividad:** muestra qué estudiantes están esperando un cupo en cada actividad y desde qué fecha se inscribieron, ordenados cronológicamente. Es útil para que los administradores gestionen las vacantes de forma justa cuando alguien cancela su inscripción.
+
+9. **Ranking de estudiantes más activos:** identifica los estudiantes con mayor cantidad de actividades confirmadas. Permite reconocer a los estudiantes con mayor participación deportiva y detectar posibles casos de sobrecarga de actividades.
+
+10. **Actividades sin inscriptos confirmados:** lista las actividades que no tienen ningún inscripto confirmado, independientemente de su estado. Es una herramienta de gestión para detectar actividades sin demanda que podrían reorganizarse o cancelarse.
 
 ---
 
