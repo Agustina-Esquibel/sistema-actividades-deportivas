@@ -46,17 +46,17 @@ Registro de asistencia por actividad y fecha. Solo aparecen los estudiantes con 
 
 El sistema cuenta con 10 reportes que se actualizan en tiempo real con los datos del sistema.
 
-**Estadisticas generales e inscriptos**
+**Estadísticas generales e inscriptos**
 ![Reportes 1](docs/reportes_1.png)
 
 Panel superior con estadisticas globales: inscripciones confirmadas, estudiantes en lista de espera, porcentaje de asistencia promedio y cantidad de estudiantes con tres o mas inasistencias. Incluye los reportes de inscriptos por actividad con barras proporcionales e inscriptos por disciplina.
 
-**Ocupacion y asistencia por actividad**
+**Ocupación y asistencia por actividad**
 ![Reportes 2](docs/reportes_2.png)
 
-Reporte de ocupacion de cada actividad con barra de progreso que cambia de color segun el nivel: azul para disponible, naranja para casi lleno y rojo para completo. Reporte de asistencia por actividad con porcentaje de asistencia por actividad ordenado de mayor a menor
+Reporte de ocupacion de cada actividad con barra de progreso que cambia de color segun el nivel: azul para disponible, naranja para casi lleno y rojo para completo. Reporte de asistencia por actividad ordenado de mayor a menor, incluyendo actividades sin registros que aparecen con 0%.
 
-**Estudiantes mas activos y actividades sin inscriptos**
+**Estudiantes más activos y actividades sin inscriptos**
 ![Reportes 3](docs/reportes_3.png)
 
 Ranking de estudiantes con mas actividades confirmadas e identificacion de actividades que no tienen ningun inscripto confirmado, utiles para detectar actividades que podrian cancelarse.
@@ -68,7 +68,7 @@ Distribucion de inscriptos por carrera y facultad, permitiendo identificar que a
 
 ---
 
-### Configuracion
+### Configuración
 ![Configuracion](docs/configuracion.png)
 
 Gestion de disciplinas deportivas y espacios fisicos. Permite agregar, editar y eliminar tanto disciplinas como espacios. Si se intenta eliminar una disciplina o espacio que tiene actividades asociadas, el sistema muestra un mensaje de error y no permite la operacion.
