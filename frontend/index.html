@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividades Deportivas — UCU</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+</head>
+<body>
+
+    <!-- PANTALLA DE BIENVENIDA -->
+    <div id="bienvenida" class="bienvenida-screen">
+        <div class="bienvenida-card">
+            <img src="logo_transparente.png" alt="UCU" class="bienvenida-logo" />
+            <h1 class="bienvenida-titulo">Sistema de Actividades Deportivas</h1>
+            <p class="bienvenida-subtitulo">Universidad Católica del Uruguay</p>
+            <div class="bienvenida-divider"></div>
+            <p class="bienvenida-desc">Gestión de inscripciones, asistencias y reportes de actividades deportivas universitarias.</p>
+            <button class="btn btn-primary bienvenida-btn" onclick="entrarAlSistema()">
+                <i class="ti ti-arrow-right"></i> Ingresar al sistema
+            </button>
+            <p class="bienvenida-footer">Base de Datos 1 · 2026</p>
+        </div>
+    </div>
+
+    <!-- SISTEMA PRINCIPAL -->
+    <div id="sistema" class="layout" style="display:none">
+
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <img src="logo_transparente.png" alt="UCU" class="logo-img" />
+            </div>
+
+            <nav class="sidebar-nav">
+                <button class="nav-item activo" onclick="mostrarSeccion('estudiantes', this)">
+                    <i class="ti ti-users"></i>
+                    <span>Estudiantes</span>
+                </button>
+                <button class="nav-item" onclick="mostrarSeccion('actividades', this)">
+                    <i class="ti ti-ball-football"></i>
+                    <span>Actividades</span>
+                </button>
+                <button class="nav-item" onclick="mostrarSeccion('inscripciones', this)">
+                    <i class="ti ti-clipboard-list"></i>
+                    <span>Inscripciones</span>
+                </button>
+                <button class="nav-item" onclick="mostrarSeccion('asistencias', this)">
+                    <i class="ti ti-calendar-check"></i>
+                    <span>Asistencias</span>
+                </button>
+                <button class="nav-item" onclick="mostrarSeccion('reportes', this)">
+                    <i class="ti ti-chart-bar"></i>
+                    <span>Reportes</span>
+                </button>
+                <button class="nav-item" onclick="mostrarSeccion('configuracion', this)">
+                    <i class="ti ti-settings"></i>
+                    <span>Configuración</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <span>Base de Datos 1 · 2026</span>
+            </div>
+        </aside>
+
+        <main class="contenido">
+            <div id="estudiantes"    class="seccion activa"></div>
+            <div id="actividades"    class="seccion"></div>
+            <div id="inscripciones"  class="seccion"></div>
+            <div id="asistencias"    class="seccion"></div>
+            <div id="reportes"       class="seccion"></div>
+            <div id="configuracion"  class="seccion"></div>
+        </main>
+
+    </div>
+
+    <script src="js/estudiantes.js"></script>
+    <script src="js/actividades.js"></script>
+    <script src="js/inscripciones.js"></script>
+    <script src="js/asistencias.js"></script>
+    <script src="js/reportes.js"></script>
+    <script src="js/configuracion.js"></script>
+    <script>
+        const API = 'http://localhost/api';
+
+        function entrarAlSistema() {
+            document.getElementById('bienvenida').style.display = 'none';
+            document.getElementById('sistema').style.display    = 'flex';
+            cargarEstudiantes();
+        }
+
+        function mostrarSeccion(nombre, btn) {
+            document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activa'));
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('activo'));
+            document.getElementById(nombre).classList.add('activa');
+            btn.classList.add('activo');
+
+            if (nombre === 'estudiantes')   cargarEstudiantes();
+            if (nombre === 'actividades')   cargarActividades();
+            if (nombre === 'inscripciones') cargarInscripciones();
+            if (nombre === 'asistencias')   cargarAsistencias();
+            if (nombre === 'reportes')      cargarReportes();
+            if (nombre === 'configuracion') cargarConfiguracion();
+        }
+    </script>
+</body>
+</html>

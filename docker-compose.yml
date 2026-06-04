@@ -1,0 +1,49 @@
+services:
+
+  db:
+    image: mysql:8.0
+    container_name: actividades_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: MysqlRoot123!
+      MYSQL_DATABASE: actividades_deportivas
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pMysqlRoot123!"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: actividades_app
+    restart: always
+    expose:
+      - "5000"
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: MysqlRoot123!
+      DB_NAME: actividades_deportivas
+    depends_on:
+      db:
+        condition: service_healthy
+
+  nginx:
+    image: nginx:alpine
+    container_name: actividades_nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+
+volumes:
+  db_data:
