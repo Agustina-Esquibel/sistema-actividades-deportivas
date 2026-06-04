@@ -100,6 +100,8 @@ Abrir el navegador en **http://localhost**
 
 La base de datos se crea automáticamente con datos de prueba.
 
+> **Nota:** con Docker el frontend ya está configurado para comunicarse con el backend a través de nginx en `http://localhost/api`. No es necesario modificar ningún archivo.
+
 ---
 
 ### Opción B - Sin Docker (desarrollo local)
@@ -138,7 +140,7 @@ python3 app.py
 
 Abrir `frontend/index.html` con Live Server en VS Code.
 
-Verificar que `const API` en `index.html` apunte a `http://127.0.0.1:5000`
+> **Nota:** para desarrollo local, verificar que `const API` en `index.html` apunte a `http://127.0.0.1:5000` (con Docker apunta a `http://localhost/api` y no hace falta cambiarlo).
 
 ---
 

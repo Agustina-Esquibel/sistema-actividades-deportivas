@@ -111,12 +111,12 @@ def asistencia():
     cursor.execute("""
         SELECT a.nombre AS actividad,
                COUNT(ast.id_asistencia) AS clases_registradas,
-               SUM(ast.presente) AS presentes,
-               ROUND(SUM(ast.presente) * 100.0 / NULLIF(COUNT(ast.id_asistencia), 0), 1) AS porcentaje_asistencia
+               COALESCE(SUM(ast.presente), 0) AS presentes,
+               COALESCE(ROUND(SUM(ast.presente) * 100.0 / NULLIF(COUNT(ast.id_asistencia), 0), 1), 0) AS porcentaje_asistencia
         FROM actividad a
-        JOIN inscripcion i  ON a.id_actividad   = i.id_actividad
-                           AND i.estado         = 'confirmada'
-        JOIN asistencia ast ON i.id_inscripcion = ast.id_inscripcion
+        LEFT JOIN inscripcion i  ON a.id_actividad   = i.id_actividad
+                                AND i.estado         = 'confirmada'
+        LEFT JOIN asistencia ast ON i.id_inscripcion = ast.id_inscripcion
         GROUP BY a.id_actividad, a.nombre
         ORDER BY porcentaje_asistencia DESC
     """)

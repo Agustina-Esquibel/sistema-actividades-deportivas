@@ -5,8 +5,7 @@ async function cargarAsistencias() {
     const actividades    = await resActividades.json();
 
     const optsActividades = actividades
-        .filter(a => a.estado === 'abierta')
-        .map(a => `<option value="${a.id_actividad}">${a.nombre} (${a.dia} ${a.horario})</option>`)
+        .map(a => `<option value="${a.id_actividad}">${a.nombre} (${a.dia} ${a.horario}) — ${a.estado}</option>`)
         .join('');
 
     const hoy = new Date().toISOString().split('T')[0];

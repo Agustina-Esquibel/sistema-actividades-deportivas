@@ -105,8 +105,9 @@ def delete_inscripcion(id):
         era_confirmada = inscripcion['estado'] == 'confirmada'
         id_actividad   = inscripcion['id_actividad']
 
-        # Borrar
+        # Borrar asistencias primero para no violar la FK
         cursor = conn.cursor()
+        cursor.execute("DELETE FROM asistencia WHERE id_inscripcion = %s", (id,))
         cursor.execute("DELETE FROM inscripcion WHERE id_inscripcion = %s", (id,))
         conn.commit()
 
