@@ -5,6 +5,63 @@
 Sistema web para administrar inscripciones de estudiantes a actividades deportivas universitarias. Permite gestionar estudiantes, disciplinas, espacios, actividades, inscripciones, asistencias y consultar reportes.
 
 ---
+## Vista previa
+
+### Pantalla de bienvenida
+![Bienvenida](docs/bienvenida.png)
+
+Pantalla de acceso al sistema con el logo oficial de la Universidad Católica del Uruguay.
+
+---
+
+### Estudiantes
+![Estudiantes](docs/estudiantes.png)
+
+Gestión completa de estudiantes con estadísticas en tiempo real: total de registrados, facultades, carreras distintas y estudiantes con inscripción activa. Incluye formulario de alta, búsqueda en tiempo real y tabla con avatares identificatorios. Al intentar agregar un estudiante con documento o email ya registrado, el sistema muestra un mensaje de error específico.
+
+---
+
+### Actividades
+![Actividades](docs/actividades.png)
+
+Gestión de actividades deportivas con barras de ocupación en tiempo real. Cada barra cambia de color según el nivel de ocupación: azul para disponible, naranja para casi lleno y rojo para completo. Las estadísticas superiores muestran el total de actividades, cuántas están abiertas, cerradas y cuántas están llenas.
+
+---
+
+### Inscripciones
+![Inscripciones](docs/inscripciones.png)
+
+Gestión de inscripciones con control automático de cupos. Si hay cupo disponible la inscripción queda confirmada; si no, queda en lista de espera. Al cancelar una inscripción confirmada, el sistema promueve automáticamente al primer estudiante en lista de espera. El sistema impide inscribir dos veces al mismo estudiante en la misma actividad.
+
+---
+
+### Asistencias
+![Asistencias](docs/asistencias.png)
+
+Registro de asistencia por actividad y fecha. Solo aparecen los estudiantes con inscripción confirmada. Permite marcar presente o ausente individualmente o guardar todo de una vez. Los contadores de presentes y ausentes se actualizan en tiempo real al tildar cada checkbox.
+
+---
+
+### Reportes - Vista general
+![Reportes 1](docs/reportes_1.png)
+
+Panel de reportes con estadísticas globales del sistema: inscripciones confirmadas, estudiantes en lista de espera, porcentaje de asistencia promedio y cantidad de estudiantes con tres o más inasistencias. Incluye los reportes de inscriptos por actividad e inscriptos por disciplina.
+
+---
+
+### Reportes - Ocupacion y asistencia
+![Reportes 2](docs/reportes_2.png)
+
+Reportes de ocupacion por actividad con barras de progreso y porcentaje, asistencia por actividad con colores segun el nivel, lista de espera completa y estudiantes con tres o mas inasistencias registradas.
+
+---
+
+### Configuracion
+![Configuracion](docs/configuracion.png)
+
+Gestion de disciplinas deportivas y espacios fisicos. Permite agregar, editar y eliminar tanto disciplinas como espacios. Si se intenta eliminar una disciplina o espacio que tiene actividades asociadas, el sistema muestra un mensaje de error y no permite la operacion.
+
+---
 
 ## Tecnologías
 
