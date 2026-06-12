@@ -54,7 +54,7 @@ Panel superior con estadísticas globales: inscripciones confirmadas, estudiante
 **Ocupación y asistencia por actividad**
 ![Reportes 2](docs/reportes_2.png)
 
-Reporte de ocupación de cada actividad con barra de progreso que cambia de color según el nivel: azul para disponible, naranja para casi lleno y rojo para completo. Reporte de asistencia por actividad ordenado de mayor a menor, incluyendo actividades sin registros que aparecen con 0%.
+Reporte de ocupación de cada actividad con barra de progreso que cambia de color según el nivel: azul para disponible, naranja para casi lleno y rojo para completo. Reporte de asistencia por actividad ordenado de mayor a menor, incluyendo actividades sin registros que aparecen con 0%. También incluye la lista de espera por actividad con el nombre del estudiante y fecha de inscripción, y el listado de estudiantes con tres o más inasistencias.
 
 **Estudiantes más activos y actividades sin inscriptos**
 ![Reportes 3](docs/reportes_3.png)
@@ -72,8 +72,9 @@ Distribución de inscriptos por carrera y facultad, permitiendo identificar qué
 
 Visualizaciones gráficas del estado del sistema deportivo, generadas en tiempo real con los datos de la base de datos.
 
-**Inscriptos vs cupo máximo por actividad**
 ![Dashboard 1](docs/dashboard_1.png)
+
+**Inscriptos vs cupo máximo por actividad**
 
 Gráfico de barras horizontales que compara la cantidad de inscriptos confirmados con el cupo máximo de cada actividad, ordenadas de mayor a menor ocupación.
 
@@ -85,9 +86,9 @@ Gráfico de barras verticales con el porcentaje de asistencia de cada actividad,
 
 Gauge semicircular que muestra el porcentaje promedio de ocupación de todas las actividades en estado abierto. El arco cambia de color según el nivel: azul para menor de 50%, naranja entre 50% y 80%, y rojo para mayor de 80%.
 
-**Asistencia por actividad y día de la semana**
-
 ![Dashboard 2](docs/dashboard_2.png)
+
+**Asistencia por actividad y día de la semana**
 
 Tabla heatmap que cruza actividades con días de la semana. Cada celda muestra el porcentaje de asistencia de esa actividad en ese día, con escala de color que va de blanco (0%) hasta azul UCU (100%). Las celdas vacías corresponden a días en que la actividad no tiene sesiones.
 
