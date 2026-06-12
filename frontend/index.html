@@ -53,6 +53,10 @@
                     <i class="ti ti-chart-bar"></i>
                     <span>Reportes</span>
                 </button>
+                <button class="nav-item" onclick="mostrarSeccion('dashboard', this)">
+                    <i class="ti ti-layout-dashboard"></i>
+                    <span>Dashboard</span>
+                </button>
                 <button class="nav-item" onclick="mostrarSeccion('configuracion', this)">
                     <i class="ti ti-settings"></i>
                     <span>Configuración</span>
@@ -70,6 +74,7 @@
             <div id="inscripciones"  class="seccion"></div>
             <div id="asistencias"    class="seccion"></div>
             <div id="reportes"       class="seccion"></div>
+            <div id="dashboard"      class="seccion"></div>
             <div id="configuracion"  class="seccion"></div>
         </main>
 
@@ -81,6 +86,8 @@
     <script src="js/asistencias.js"></script>
     <script src="js/reportes.js"></script>
     <script src="js/configuracion.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/dashboard.js"></script>
     <script>
         const API = 'http://localhost/api';
 
@@ -101,6 +108,7 @@
             if (nombre === 'inscripciones') cargarInscripciones();
             if (nombre === 'asistencias')   cargarAsistencias();
             if (nombre === 'reportes')      cargarReportes();
+            if (nombre === 'dashboard')     cargarDashboard();
             if (nombre === 'configuracion') cargarConfiguracion();
         }
     </script>

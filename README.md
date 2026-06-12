@@ -68,6 +68,22 @@ Distribución de inscriptos por carrera y facultad, permitiendo identificar qué
 
 ---
 
+### Dashboard
+
+Visualizaciones gráficas del estado del sistema deportivo, generadas en tiempo real con los datos de la base de datos.
+
+**Inscriptos vs cupo y asistencia por actividad**
+![Dashboard 1](docs/dashboard_1.png)
+
+Panel superior con un gráfico de barras horizontales que compara la cantidad de inscriptos confirmados con el cupo máximo de cada actividad, ordenadas de mayor a menor ocupación. A la derecha, un gráfico de barras verticales con el porcentaje de asistencia de cada actividad con código de color: verde para igual o mayor a 75%, naranja entre 50% y 75%, y rojo para menor de 50%.
+
+**Gauge de ocupación y heatmap de asistencia**
+![Dashboard 2](docs/dashboard_2.png)
+
+Gauge semicircular que indica el porcentaje promedio de ocupación de todas las actividades en estado abierta. El arco cambia de color según el nivel: azul para menor de 50%, naranja entre 50% y 80%, y rojo para mayor de 80%. Debajo, una tabla heatmap que cruza actividades con días de la semana: cada celda muestra el porcentaje de asistencia de esa actividad en ese día, con escala de color que va de blanco al 0% hasta el azul UCU (#1a3a6b) al 100%. Las celdas vacías corresponden a días en que la actividad no tiene sesiones.
+
+---
+
 ### Configuración
 ![Configuracion](docs/configuracion.png)
 
@@ -158,7 +174,8 @@ sistema-actividades-deportivas/
 │       ├── asistencias.py
 │       ├── disciplinas.py
 │       ├── espacios.py
-│       └── reportes.py
+│       ├── reportes.py
+│       └── dashboard.py
 ├── frontend/
 │   ├── index.html
 │   ├── css/style.css
@@ -168,7 +185,8 @@ sistema-actividades-deportivas/
 │       ├── inscripciones.js
 │       ├── asistencias.js
 │       ├── reportes.js
-│       └── configuracion.js
+│       ├── configuracion.js
+│       └── dashboard.js
 ├── init/
 │   └── bd_activididades_deportivas.sql
 ├── Dockerfile

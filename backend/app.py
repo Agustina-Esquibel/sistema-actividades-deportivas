@@ -24,6 +24,7 @@ from routes.actividades   import actividades_bp
 from routes.inscripciones import inscripciones_bp
 from routes.asistencias   import asistencias_bp
 from routes.reportes      import reportes_bp
+from routes.dashboard     import dashboard_bp
 
 app = Flask(__name__)
 app.json_provider_class = CustomJSONProvider
@@ -37,6 +38,7 @@ app.register_blueprint(actividades_bp)
 app.register_blueprint(inscripciones_bp)
 app.register_blueprint(asistencias_bp)
 app.register_blueprint(reportes_bp)
+app.register_blueprint(dashboard_bp)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port=5000)
