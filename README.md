@@ -2,7 +2,7 @@
 
 **Universidad Católica del Uruguay - Base de Datos 1 - 2026**
 
-Sistema web para administrar inscripciones de estudiantes a actividades deportivas universitarias. Permite gestionar estudiantes, disciplinas, espacios, actividades, inscripciones, asistencias y consultar reportes.
+Sistema web para administrar inscripciones de estudiantes a actividades deportivas universitarias. Permite gestionar estudiantes, disciplinas, espacios, actividades, inscripciones, asistencias, consultar reportes y visualizar el estado del sistema mediante un dashboard interactivo.
 
 ---
 ## Vista previa
@@ -72,15 +72,24 @@ Distribución de inscriptos por carrera y facultad, permitiendo identificar qué
 
 Visualizaciones gráficas del estado del sistema deportivo, generadas en tiempo real con los datos de la base de datos.
 
-**Inscriptos vs cupo y asistencia por actividad**
+**Inscriptos vs cupo máximo por actividad**
 ![Dashboard 1](docs/dashboard_1.png)
 
-Panel superior con un gráfico de barras horizontales que compara la cantidad de inscriptos confirmados con el cupo máximo de cada actividad, ordenadas de mayor a menor ocupación. A la derecha, un gráfico de barras verticales con el porcentaje de asistencia de cada actividad con código de color: verde para igual o mayor a 75%, naranja entre 50% y 75%, y rojo para menor de 50%.
+Gráfico de barras horizontales que compara la cantidad de inscriptos confirmados con el cupo máximo de cada actividad, ordenadas de mayor a menor ocupación.
+
+**Porcentaje de asistencia por actividad**
+
+Gráfico de barras verticales con el porcentaje de asistencia de cada actividad, ordenado de mayor a menor. El color de cada barra indica el nivel: verde para igual o mayor a 75%, naranja entre 50% y 75%, y rojo para menor de 50%.
 
 **Gauge de ocupación y heatmap de asistencia**
+
+Gauge semicircular que muestra el porcentaje promedio de ocupación de todas las actividades en estado abierto. El arco cambia de color según el nivel: azul para menor de 50%, naranja entre 50% y 80%, y rojo para mayor de 80%.
+
+**Asistencia por actividad y día de la semana**
+
 ![Dashboard 2](docs/dashboard_2.png)
 
-Gauge semicircular que indica el porcentaje promedio de ocupación de todas las actividades en estado abierta. El arco cambia de color según el nivel: azul para menor de 50%, naranja entre 50% y 80%, y rojo para mayor de 80%. Debajo, una tabla heatmap que cruza actividades con días de la semana: cada celda muestra el porcentaje de asistencia de esa actividad en ese día, con escala de color que va de blanco al 0% hasta el azul UCU (#1a3a6b) al 100%. Las celdas vacías corresponden a días en que la actividad no tiene sesiones.
+Tabla heatmap que cruza actividades con días de la semana. Cada celda muestra el porcentaje de asistencia de esa actividad en ese día, con escala de color que va de blanco (0%) hasta azul UCU (100%). Las celdas vacías corresponden a días en que la actividad no tiene sesiones.
 
 ---
 
@@ -203,6 +212,7 @@ sistema-actividades-deportivas/
 - 10 reportes con visualizaciones
 - Validaciones en base de datos, backend y frontend
 - Promoción automática de lista de espera al cancelar inscripción
+- Dashboard interactivo con gráficos en tiempo real
 
 ---
 
