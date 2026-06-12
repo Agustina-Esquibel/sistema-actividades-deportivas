@@ -82,7 +82,7 @@ Gráfico de barras horizontales que compara la cantidad de inscriptos confirmado
 
 Gráfico de barras verticales con el porcentaje de asistencia de cada actividad, ordenado de mayor a menor. El color de cada barra indica el nivel: verde para igual o mayor a 75%, naranja entre 50% y 75%, y rojo para menor de 50%.
 
-**Gauge de ocupación y heatmap de asistencia**
+**Gauge de ocupación**
 
 Gauge semicircular que muestra el porcentaje promedio de ocupación de todas las actividades en estado abierto. El arco cambia de color según el nivel: azul para menor de 50%, naranja entre 50% y 80%, y rojo para mayor de 80%.
 
@@ -90,7 +90,7 @@ Gauge semicircular que muestra el porcentaje promedio de ocupación de todas las
 
 **Asistencia por actividad y día de la semana**
 
-Tabla heatmap que cruza actividades con días de la semana. Cada celda muestra el porcentaje de asistencia de esa actividad en ese día, con escala de color que va de blanco (0%) hasta azul UCU (100%). Las celdas vacías corresponden a días en que la actividad no tiene sesiones.
+Tabla heatmap que cruza actividades con días de la semana. Cada celda muestra el porcentaje de asistencia de esa actividad en ese día, con escala de color que va de blanco (0%) hasta azul (100%). Las celdas vacías corresponden a días en que la actividad no tiene sesiones.
 
 ---
 
