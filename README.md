@@ -225,6 +225,8 @@ sistema-actividades-deportivas/
 4. Un estudiante no puede inscribirse dos veces a la misma actividad
 5. Solo se registra asistencia de inscripciones confirmadas
 6. Actividades canceladas o finalizadas no aceptan inscripciones
+7. No se pueden crear dos actividades en el mismo espacio, día y horario
+8. Un estudiante no puede inscribirse en dos actividades que coincidan en día y horario
 
 ---
 
