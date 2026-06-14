@@ -256,6 +256,10 @@ Además de las 7 consultas requeridas, se implementaron 3 consultas adicionales 
 
 10. **Actividades sin inscriptos confirmados:** lista las actividades que no tienen ningún inscripto confirmado, independientemente de su estado. Es una herramienta de gestión para detectar actividades sin demanda que podrían reorganizarse o cancelarse.
 
+11. **Verificar conflicto de espacio:** detecta si ya existe una actividad en el mismo espacio físico, día y horario antes de permitir la creación de una nueva actividad.
+
+12. **Verificar conflicto de horario del estudiante:** detecta si un estudiante ya tiene una inscripción confirmada en otra actividad que coincida en día y horario, mostrando el nombre de la actividad conflictiva para que pueda darse de baja primero.
+
 ---
 
 ## Datos de prueba
