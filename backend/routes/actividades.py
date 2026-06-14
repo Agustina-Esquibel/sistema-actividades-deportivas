@@ -73,8 +73,9 @@ def create_actividad():
             WHERE id_espacio = %s AND dia = %s AND horario = %s
         """, (data['id_espacio'], data['dia'].strip(), data['horario']))
         conflicto = cursor.fetchone()
+        cursor.close()
         if conflicto:
-            cursor.close(); conn.close()
+            conn.close()
             return jsonify({'error': f"El espacio ya está ocupado por \"{conflicto['nombre']}\" ese día y horario"}), 409
 
         cursor = conn.cursor()
