@@ -139,3 +139,30 @@ WHERE a.id_actividad NOT IN (
     WHERE estado = 'confirmada'
 )
 ORDER BY a.nombre;
+
+
+-- Consultas de validación de negocio
+
+
+-- Consulta 11: Verificar conflicto de espacio al crear una actividad
+-- Detecta si ya existe una actividad que usa el mismo espacio físico en el mismo día y horario.
+-- Se utiliza antes de insertar una nueva actividad para evitar solapamientos de espacio.
+SELECT nombre
+FROM actividad
+WHERE id_espacio = :id_espacio
+  AND dia        = :dia
+  AND horario    = :horario;
+
+
+-- Consulta 12: Verificar conflicto de horario de un estudiante al inscribirse
+-- Detecta si el estudiante ya tiene una inscripción confirmada en otra actividad
+-- que coincida en día y horario con la actividad a la que intenta inscribirse.
+-- Se utiliza antes de confirmar una inscripción para evitar superposición de horarios.
+SELECT a.nombre AS actividad_conflicto
+FROM inscripcion i
+JOIN actividad a ON i.id_actividad = a.id_actividad
+WHERE i.id_estudiante = :id_estudiante
+  AND i.estado        = 'confirmada'
+  AND a.dia           = :dia
+  AND a.horario       = :horario
+  AND i.id_actividad != :id_actividad;

@@ -64,7 +64,19 @@ def create_actividad():
         return jsonify({'error': 'El cupo máximo debe ser mayor a cero'}), 400
 
     try:
-        conn = get_connection()
+        conn   = get_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        # Conflicto de espacio: mismo espacio, día y horario
+        cursor.execute("""
+            SELECT nombre FROM actividad
+            WHERE id_espacio = %s AND dia = %s AND horario = %s
+        """, (data['id_espacio'], data['dia'].strip(), data['horario']))
+        conflicto = cursor.fetchone()
+        if conflicto:
+            cursor.close(); conn.close()
+            return jsonify({'error': f"El espacio ya está ocupado por \"{conflicto['nombre']}\" ese día y horario"}), 409
+
         cursor = conn.cursor()
         cursor.execute("""
             INSERT INTO actividad (nombre, id_disciplina, id_espacio, cupo_maximo, dia, horario, estado)

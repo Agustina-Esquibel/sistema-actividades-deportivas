@@ -69,6 +69,22 @@ def create_inscripcion():
         cursor.close(); conn.close()
         return jsonify({'error': 'El estudiante ya está inscripto en esta actividad'}), 400
 
+    # Conflicto de horario: otra actividad confirmada el mismo día y hora
+    cursor.execute("""
+        SELECT a.nombre AS actividad_conflicto
+        FROM inscripcion i
+        JOIN actividad a ON i.id_actividad = a.id_actividad
+        WHERE i.id_estudiante = %s
+          AND i.estado        = 'confirmada'
+          AND a.dia           = %s
+          AND a.horario       = %s
+          AND i.id_actividad != %s
+    """, (id_estudiante, actividad['dia'], actividad['horario'], id_actividad))
+    conflicto = cursor.fetchone()
+    if conflicto:
+        cursor.close(); conn.close()
+        return jsonify({'error': f"El estudiante ya tiene una inscripción confirmada en \"{conflicto['actividad_conflicto']}\" ese día y horario. Debe darse de baja primero."}), 400
+
     # Reglas 2 y 3: cupo disponible o lista de espera
     cursor.execute("""
         SELECT COUNT(*) AS confirmados FROM inscripcion
